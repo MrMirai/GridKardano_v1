@@ -809,7 +809,7 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 		System::IO::Stream^ myStream;
 		OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog();
 		openFileDialog1->Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
-
+		//
 		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 		{
 			if ((myStream = openFileDialog1->OpenFile()) != nullptr)
