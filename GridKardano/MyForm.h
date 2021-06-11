@@ -493,7 +493,6 @@ namespace GridKardano {
 		for (int i = 0; i < k; i++) { //заполнение решетки
 			for (int j = 0; j < k; j++){
 				sqr[i, j] = ++tmp;
-				this->dataGridView1->Rows[i]->Cells[j]->Value = tmp;
 			}
 		}
 		
@@ -531,8 +530,6 @@ namespace GridKardano {
 					for (int j = 0; j < N / 2; j++)
 					{
 						kardano[i, j] = sqr[ii, jj];
-						this->dataGridView1->Rows[i]->Cells[j]->Value = sqr[ii,jj];
-						
 						++jj;
 					}
 					++ii;
@@ -543,7 +540,6 @@ namespace GridKardano {
 					for (int j = N / 2; j < N; j++)
 					{
 						kardano[i, j] = sqr[ii, jj];
-						this->dataGridView1->Rows[i]->Cells[j]->Value = sqr[ii, jj];
 						++jj;
 					}
 					++ii;
@@ -554,7 +550,6 @@ namespace GridKardano {
 					for (int j = N / 2; j < N; j++)
 					{
 						kardano[i, j] = sqr[ii, jj];
-						this->dataGridView1->Rows[i]->Cells[j]->Value = sqr[ii, jj];
 						++jj;
 					}
 					++ii;
@@ -565,7 +560,6 @@ namespace GridKardano {
 					for (int j = 0; j < N / 2; j++)
 					{
 						kardano[i, j] = sqr[ii, jj];
-						this->dataGridView1->Rows[i]->Cells[j]->Value = sqr[ii, jj];
 						++jj;
 					}
 					++ii;
@@ -591,7 +585,6 @@ namespace GridKardano {
 					{
 						if (static_cast<int>(kardano[i, j]) == tmp1 + 1){
 							kardano[i, j] = 0;
-							this->dataGridView1->Rows[i]->Cells[j]->Value = 0;
 
 						}
 					}
@@ -602,7 +595,7 @@ namespace GridKardano {
 					{
 						if (static_cast<int>(kardano[i, j]) == tmp1 + 1){
 							kardano[i, j] = 0;
-							this->dataGridView1->Rows[i]->Cells[j]->Value = 0;
+
 						}
 					}
 				}
@@ -612,7 +605,7 @@ namespace GridKardano {
 					{
 						if (static_cast<int>(kardano[i, j]) == tmp1 + 1){
 							kardano[i, j] = 0;
-							this->dataGridView1->Rows[i]->Cells[j]->Value = 0;;
+							
 						}
 					}
 				}
@@ -622,7 +615,7 @@ namespace GridKardano {
 					{
 						if (static_cast<int>(kardano[i, j]) == tmp1 + 1){
 							kardano[i, j] = 0;
-							this->dataGridView1->Rows[i]->Cells[j]->Value = 0;
+
 						}
 					}
 				}
@@ -631,7 +624,7 @@ namespace GridKardano {
 			for (int j = 0; j < N; j++)
 				if (static_cast<int>(kardano[i, j]) != 0){
 					kardano[i, j] = 1;
-					this->dataGridView1->Rows[i]->Cells[j]->Value = 1;
+
 				}
 		///////////////////////////////////////////////////
 		////////////////encription(str, kardano, shifr, N)/////////////////////////
@@ -718,6 +711,8 @@ namespace GridKardano {
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	int k; //Размерность решетки
 	k = sqrt(this->richTextBox2->Text->Length / 4);
+	this->dataGridView1->RowCount = sqrt(this->richTextBox2->Text->Length);
+	this->dataGridView1->ColumnCount = sqrt(this->richTextBox2->Text->Length);
 	int N = 2 * k; //Размерность конечной решетки
 	int N1 = k * k; //Длинна ключа для заполнения нулями
 	///////////////////////////////////////////////// Сообщение (максимальная длинна 4k^2)
@@ -753,8 +748,11 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 	{
 		int tmp = 0;
 		for (int i = 0; i < N; i++) { //заполнение нулями
-			for (int j = 0; j < N; j++)
+			for (int j = 0; j < N; j++){
+				if (tmp < richTextBox2->Text->Length)
+					this->dataGridView1->Rows[i]->Cells[j]->Value = richTextBox2->Text[tmp];
 				shifr[i][j] = richTextBox2->Text[tmp++];
+			}
 		}
 	}
 	///////////////////////////KardanoFill///////////////////
